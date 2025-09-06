@@ -121,5 +121,29 @@
     color: #fff;
 }
 
-
-
+/* Disable animations on mobile devices */
+@media (max-width: 767.98px) {
+  /* Disable category animations */
+  .slick-slider.custom-slider-01 [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  
+  /* Disable product animations */
+  .product[data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  
+  /* Disable hover effects on mobile */
+  .hover-zoom-in {
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .hover-zoom-in:hover {
+    transform: none !important;
+  }
+}
