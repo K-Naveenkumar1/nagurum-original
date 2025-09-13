@@ -136,14 +136,4 @@
     transform: none !important;
     animation: none !important;
   }
-  
-  /* Disable hover effects on mobile */
-  .hover-zoom-in {
-    transform: none !important;
-    transition: none !important;
-  }
-  
-  .hover-zoom-in:hover {
-    transform: none !important;
-  }
 }
