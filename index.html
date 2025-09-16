@@ -12,11 +12,64 @@
     <link rel="stylesheet" href="css/slick-slick.min.css">
     <link rel="stylesheet" href="css/magnific-popup-magnific-popup.min.css">
     <link rel="stylesheet" href="css/jquery-ui-jquery-ui.min.css">
+    <link rel="stylesheet" href="css/vendors-animate.css">
     <link rel="stylesheet" href="css/mapbox-gl-mapbox-gl.min.css">
     <link rel="stylesheet" href="css/css-phosphor.min.css">
     <link rel="stylesheet" href="css/tuesday-night-stylesheet.min.css">
     <!-- Themes core CSS -->
     <link rel="stylesheet" href="css/css-themes.css">
+    
+    <!-- Custom CSS for 5-column layout -->
+    <style>
+      /* 5-column grid for products */
+      .col-lg-2-4 {
+        flex: 0 0 20%;
+        max-width: 20%;
+      }
+      
+      /* Responsive adjustments */
+      @media (max-width: 1199.98px) {
+        .col-lg-2-4 {
+          flex: 0 0 25%;
+          max-width: 25%;
+        }
+      }
+      @media (max-width: 991.98px) {
+        .col-lg-2-4 {
+          flex: 0 0 33.333333%;
+          max-width: 33.333333%;
+        }
+      }
+      @media (max-width: 767.98px) {
+        .col-lg-2-4 {
+          flex: 0 0 50%;
+          max-width: 50%;
+        }
+      }
+      @media (max-width: 575.98px) {
+        .col-lg-2-4 {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+      }
+      
+      /* Ensure product cards maintain consistent height */
+      .product-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .product-card .card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .product-card .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom-styles.css">
   </head>
@@ -115,13 +168,13 @@
             <div class="container container-xxl h-100 position-relative">
               <div class="h-100 d-flex flex-column">
                 <div data-animate="fadeInDown" class="my-auto">
-                  <p class="text-white fs-40 font-weight-600">WELCOME TO</p>
-                  <h2 class="mb-5 fs-100 lh-1 text-white">NAGURUM INC</h2>
-                  <p class="text-white fs-20 padding-left-10px font-weight-300 mb-3">Authorized Super Stockist of Arctic Fox Electronics – Tamil Nadu</p>
-                  <a href="shop-page-01.html" class="btn btn-outline-white">Get Dealer Pricing</a>
+                  <p class="text-dark fs-40 font-weight-600">WELCOME TO</p>
+                  <h2 class="mb-5 fs-100 lh-1">NAGURUM INC</h2>
+                  <p class="text-dark fs-20 padding-left-10px font-weight-400 mb-3">Authorized Super Stockist of Arctic Fox Electronics – Tamil Nadu</p>
+                  <a href="shop-page-01.html" class="btn btn-outline-primary">Get Dealer Pricing</a>
                 </div>
                 <div class="position-absolute pos-fixed-bottom-right mb-6 mr-3 mr-sm-0">
-                  <p class="mb-0 text-white text-right">
+                  <p class="mb-0 text-primary text-right">
                     Nagurum Inc
                 </div>
               </div>
@@ -133,13 +186,13 @@
             <div class="container container-xxl h-100 position-relative">
               <div class="h-100 d-flex flex-column">
                 <div data-animate="fadeInDown" class="my-auto">
-                  <p class="text-white fs-40 font-weight-600">GROW YOUR</p>
-                  <h2 class="mb-5 fs-100 lh-1 text-white">BUSINESS WITH US</h2>
-                  <p class="text-white fs-20 font-weight-300 padding-left-10px mb-3">Exclusive products, unbeatable wholesale prices, and reliable supply chain support.</p>
-                  <a href="shop-page-01.html" class="btn btn-outline-white">Partner With Nagurum</a>
+                  <p class="text-dark fs-40 font-weight-600">GROW YOUR</p>
+                  <h2 class="mb-5 fs-100 lh-1">BUSINESS WITH US</h2>
+                  <p class="text-dark fs-20 font-weight-400 padding-left-10px mb-3">Exclusive products, unbeatable wholesale prices, and reliable supply chain support.</p>
+                  <a href="shop-page-01.html" class="btn btn-outline-primary">Partner With Nagurum</a>
                 </div>
                 <div class="position-absolute pos-fixed-bottom-right mb-6 mr-3 mr-sm-0">
-                  <p class="mb-0 text-white text-right">
+                  <p class="mb-0 text-primary text-right">
                     Nagurum Inc
                   </p>
                 </div>
@@ -152,13 +205,13 @@
             <div class="container container-xxl h-100 position-relative">
               <div class="h-100 d-flex flex-column">
                 <div data-animate="fadeInDown" class="my-auto">
-                  <p class="text-white fs-40 font-weight-600">TECHNOLOGY THAT</p>
-                  <h2 class="mb-5 fs-100 lh-1 text-white">YOU CAN TRUST</h2>
-                  <p class="text-white fs-20 font-weight-300 padding-left-15px mb-3">Delivering genuine Arctic Fox Electronics with consistent support and after-sales care.</p>
-                  <a href="shop-page-01.html" class="btn btn-outline-white">Explore Our Products</a>
+                  <p class="text-dark fs-40 font-weight-600">TECHNOLOGY THAT</p>
+                  <h2 class="mb-5 fs-100 lh-1">YOU CAN TRUST</h2>
+                  <p class="text-dark fs-20 font-weight-300 padding-left-15px mb-3">Delivering genuine Arctic Fox Electronics with consistent support and after-sales care.</p>
+                  <a href="shop-page-01.html" class="btn btn-outline-primary">Explore Our Products</a>
                 </div>
                 <div class="position-absolute pos-fixed-bottom-right mb-6 mr-3 mr-sm-0">
-                  <p class="mb-0 text-white text-right">
+                  <p class="mb-0 text-primary text-right">
                     Nagurum Inc
                   </p>
                 </div>
@@ -327,356 +380,14 @@
       <section class="py-9 pt-lg-10 pb-lg-13">
         <div class="container container-xxl">
           <h2 class="mb-0 fs-30 fs-lg-42 d-inline-block align-items-center mb-8">TOP PRODUCTS</h2>
-          <div class="tab-content">
-            <div class="tab-pane fade show active" id="best-sellers">
-              <div class="row">
-                <div class="col-6 col-md-4 col-xl-custom product product-style-01 mb-8" data-animate="fadeInUp">
-                  <div class="card border-0">
-                    <div class="position-relative hover-zoom-in">
-                      <a href="product-detail-01.html" class="d-block overflow-hidden">
-                        <img src="images/product-05.jpg" alt="Striped cotton-blend sweatshirt" class="card-img-top image-active">
-                        <img src="images/product-05_01.jpg" alt="Striped cotton-blend sweatshirt" class="card-img-top image-hover">
-                      </a>
-                      <div class="position-absolute pos-fixed-bottom-center d-inline-flex p-4 flex-column z-index-10">
-                        <div class="w-100 content-change-horizontal d-flex justify-content-center mt-auto">
-                          <a href="#" data-toggle="tooltip" data-placement="top" title="Quick view" class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px">
-                            <span data-toggle="modal" data-target="#product-best-sellers-5">
-                              <i class="fal fa-eye"></i>
-                            </span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-body pt-3 px-0 pb-0">
-                      <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375"><a href="product-detail-01.html" class="">Arctic Fox Pureview Transparent Wireless and Bluetooth Rechargeable Mouse</a>
-                      </h3>
-                      <p class="text-primary mb-2 card-title lh-14375">Rs. 699.00</p>
-                    </div>
-                    <div class="background-color-expand"></div>
-                  </div>
+          <div class="container container-xxl px-0">
+            <div class="row g-4 products-container">
+              <!-- Products will be loaded here dynamically -->
+              <div class="col-12 text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
                 </div>
-                <div class="modal fade quick-view" id="product-best-sellers-5" tabindex="-1" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content p-0">
-                      <div class="modal-body p-0">
-                        <button type="button" class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true" class="fs-20"><i class="fal fa-times"></i></span>
-                        </button>
-                        <div class="row no-gutters">
-                          <div class="col-sm-6">
-                            <div style="background-image: url('images/product-05.jpg');" class="h-100 bg-img-cover-center ratio ratio-1-1"></div>
-                          </div>
-                          <div class="col-sm-6">
-                            <div class="p-3 py-lg-8 pl-lg-8 pr-lg-7">
-                              <a href="shop-page-01.html" class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
-                                Gaming</a>
-                              <div class="d-flex align-items-center">
-                                <h2 class="fs-30 mb-1"><a href="product-detail-01.html">Arctic Fox Pureview Transparent Wireless and Bluetooth Rechargeable Mouse</a>
-                                </h2>
-                              </div>
-                              <p class="mb-6 fs-20 text-primary lh-14">
-                                Rs. 699.00
-                              </p>
-                              <p class="mt-2 mb-6">Introducing our PUREVIEW Transparent Wireless Mouse – a revolution in design and functionality. Its see-through sleek aesthetic is both unique and captivating, providing a clear and cool visual appeal. The innovative design features a magnetic attachment for both the top cover and USB receiver memory slot</p>
-                              <form>
-                                <div class="row align-items-end no-gutters mx-n2">
-                                  <div class="col-sm-9 mb-6 mb-sm-0 px-2">
-                                    <button type="submit" class="btn btn-primary btn-block text-capitalize">
-                                     Order On WhatsApp
-                                    </button>
-                                    <button type="submit" class="btn btn-primary btn-block text-capitalize">
-                                      Contact Store
-                                    </button>
-                                  </div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6 col-md-4 col-xl-custom product product-style-01 mb-8" data-animate="fadeInUp">
-                  <div class="card border-0">
-                    <div class="position-relative hover-zoom-in">
-                      <a href="product-detail-01.html" class="d-block overflow-hidden">
-                        <img src="images/product-07.jpg" alt="Flowers cotton dress" class="card-img-top image-active">
-                        <img src="images/product-07_01.jpg" alt="Flowers cotton dress" class="card-img-top image-hover">
-                      </a>
-                      <div class="position-absolute pos-fixed-bottom-center d-inline-flex p-4 flex-column z-index-10">
-                        <div class="w-100 content-change-horizontal d-flex justify-content-center mt-auto">
-                          <a href="#" data-toggle="tooltip" data-placement="top" title="Quick view" class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px">
-                            <span data-toggle="modal" data-target="#product-best-sellers-7">
-                              <i class="fal fa-eye"></i>
-                            </span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-body pt-3 px-0 pb-0">
-                      <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375"><a href="product-detail-01.html" class="">Arctic Fox Craze MP3 Music Speaker</a>
-                      </h3>
-                      <p class="text-primary mb-2 card-title lh-14375">Rs. 999.00</p>
-                    </div>
-                    <div class="background-color-expand"></div>
-                  </div>
-                </div>
-                <div class="modal fade quick-view" id="product-best-sellers-7" tabindex="-1" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content p-0">
-                      <div class="modal-body p-0">
-                        <button type="button" class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true" class="fs-20"><i class="fal fa-times"></i></span>
-                        </button>
-                        <div class="row no-gutters">
-                          <div class="col-sm-6">
-                            <div style="background-image: url('images/product-07.jpg');" class="h-100 bg-img-cover-center ratio ratio-1-1"></div>
-                          </div>
-                          <div class="col-sm-6">
-                            <div class="p-3 py-lg-8 pl-lg-8 pr-lg-7">
-                              <a href="shop-page-01.html" class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
-                                Audio</a>
-                              <div class="d-flex align-items-center">
-                                <h2 class="fs-30 mb-1"><a href="product-detail-01.html">Arctic Fox Craze MP3 Music Speaker</a>
-                                </h2>
-                              </div>
-                              <p class="mb-6 fs-20 text-primary lh-14">
-                                Rs. 999.00
-                              </p>
-                              <p class="mt-2 mb-6">Get ready to immerse yourself in the epitome of sound perfection – the Arctic Fox Bluetooth Speaker. Your gateway to a world of sonic bliss, no matter where life takes you!
-
-                                Picture this: You're lounging in your favorite spot, strolling through the city, or embarking on an outdoor escapade – our speaker ensures your soundtrack is always on point.</p>
-                              <form>
-                                <div class="row align-items-end no-gutters mx-n2">
-                                  <div class="col-sm-9 mb-6 mb-sm-0 px-2">
-                                    <button type="submit" class="btn btn-primary btn-block text-capitalize">
-                                     Order On WhatsApp
-                                    </button>
-                                    <button type="submit" class="btn btn-primary btn-block text-capitalize">
-                                      Contact Store
-                                    </button>
-                                  </div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6 col-md-4 col-xl-custom product product-style-01 mb-8" data-animate="fadeInUp">
-                  <div class="card border-0">
-                    <div class="position-relative hover-zoom-in">
-                      <a href="product-detail-01.html" class="d-block overflow-hidden">
-                        <img src="images/product-08.jpg" alt="Hoodie with pocket" class="card-img-top image-active">
-                        <img src="images/product-08_01.jpg" alt="Hoodie with pocket" class="card-img-top image-hover">
-                      </a>
-                      <div class="position-absolute pos-fixed-bottom-center d-inline-flex p-4 flex-column z-index-10">
-                        <div class="w-100 content-change-horizontal d-flex justify-content-center mt-auto">
-                          <a href="#" data-toggle="tooltip" data-placement="top" title="Quick view" class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px">
-                            <span data-toggle="modal" data-target="#product-best-sellers-8">
-                              <i class="fal fa-eye"></i>
-                            </span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-body pt-3 px-0 pb-0">
-                      <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375"><a href="product-detail-01.html" class="">New Arctic Fox USB Wired Gaming Mouse</a>
-                      </h3>
-                      <p class="text-primary mb-2 card-title lh-14375"> Rs. 249.00</p>
-                    </div>
-                    <div class="background-color-expand"></div>
-                  </div>
-                </div>
-                <div class="modal fade quick-view" id="product-best-sellers-8" tabindex="-1" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content p-0">
-                      <div class="modal-body p-0">
-                        <button type="button" class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true" class="fs-20"><i class="fal fa-times"></i></span>
-                        </button>
-                        <div class="row no-gutters">
-                          <div class="col-sm-6">
-                            <div style="background-image: url('images/product-08.jpg');" class="h-100 bg-img-cover-center ratio ratio-1-1"></div>
-                          </div>
-                          <div class="col-sm-6">
-                            <div class="p-3 py-lg-8 pl-lg-8 pr-lg-7">
-                              <a href="shop-page-01.html" class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
-                                Gaming</a>
-                              <div class="d-flex align-items-center">
-                                <h2 class="fs-30 mb-1"><a href="product-detail-01.html">New Arctic Fox USB Wired Gaming Mouse</a>
-                                </h2>
-                              </div>
-                              <p class="mb-6 fs-20 text-primary lh-14">
-                                Rs. 249.00
-                              </p>
-                              <p class="mt-2 mb-6">Precision. Speed. Comfort. The Arctic Fox Gaming Mouse is your ultimate weapon for victory. With cutting-edge tech and ergonomic design, you'll stay ahead in any game genre.</p>
-                              <form>
-                                <div class="form-group shop-swatch-color shop-swatch-color-02 mb-6">
-                                  <label class="mb-2"><span class="font-weight-500 text-primary mr-2">Color:</span>
-                                    <span class="var text-capitalize"></span></label>
-                                  <ul class="list-inline d-flex justify-content-start mb-0">
-                                    <li class="list-inline-item">
-                                      <a href="#" class="d-block swatches-item border" data-var="white" data-toggle="tooltip" data-placement="top" title="White" style="background-color: #fff;"> </a>
-                                    </li>
-                                  </ul>
-                                  <input type="hidden" name="swatches-color" class="swatches-select" value="min">
-                                </div>
-                                <div class="row align-items-end no-gutters mx-n2">
-                                  <div class="col-sm-9 mb-6 mb-sm-0 px-2">
-                                    <button type="submit" class="btn btn-primary btn-block text-capitalize">
-                                      Order On WhatsApp
-                                    </button>
-                                    <button type="submit" class="btn btn-primary btn-block text-capitalize">
-                                      Contact Store
-                                    </button>
-                                  </div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6 col-md-4 col-xl-custom product product-style-01 mb-8" data-animate="fadeInUp">
-                  <div class="card border-0">
-                    <div class="position-relative hover-zoom-in">
-                      <a href="product-detail-01.html" class="d-block overflow-hidden">
-                        <img src="images/product-09.jpg" alt="Oversize cotton sweatshirt" class="card-img-top image-active">
-                        <img src="images/product-09_1.jpg" alt="Oversize cotton sweatshirt" class="card-img-top image-hover">
-                      </a>
-                      <div class="position-absolute pos-fixed-bottom-center d-inline-flex p-4 flex-column z-index-10">
-                        <div class="w-100 content-change-horizontal d-flex justify-content-center mt-auto">
-                          <a href="#" data-toggle="tooltip" data-placement="top" title="Quick view" class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px">
-                            <span data-toggle="modal" data-target="#product-best-sellers-9">
-                              <i class="fal fa-eye"></i>
-                            </span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-body pt-3 px-0 pb-0">
-                      <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375"><a href="product-detail-01.html" class="">Arctic Fox Pro Max Wireless Mouse</a>
-                      </h3>
-                      <p class="text-primary mb-2 card-title lh-14375">Rs. 399.00</p>
-                    </div>
-                    <div class="background-color-expand"></div>
-                  </div>
-                </div>
-                <div class="modal fade quick-view" id="product-best-sellers-9" tabindex="-1" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content p-0">
-                      <div class="modal-body p-0">
-                        <button type="button" class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true" class="fs-20"><i class="fal fa-times"></i></span>
-                        </button>
-                        <div class="row no-gutters">
-                          <div class="col-sm-6">
-                            <div style="background-image: url('images/product-09.jpg');" class="h-100 bg-img-cover-center ratio ratio-1-1"></div>
-                          </div>
-                          <div class="col-sm-6">
-                            <div class="p-3 py-lg-8 pl-lg-8 pr-lg-7">
-                              <a href="shop-page-01.html" class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
-                                Gaming</a>
-                              <div class="d-flex align-items-center">
-                                <h2 class="fs-30 mb-1"><a href="product-detail-01.html">Arctic Fox Pro Max Wireless Mouse</a>
-                                </h2>
-                              </div>
-                              <p class="mb-6 fs-20 text-primary lh-14">
-                                Rs. 399.00
-                              </p>
-                              <p class="mt-2 mb-6">Experience comfort, precision, and style with the new Arctic Fox Wireless Pro Max mouse. Designed for productivity and performance across multiple devices and surfaces, this ergonomic mouse adapts to your work style.</p>
-                              <form>
-                                <div class="row align-items-end no-gutters mx-n2">
-                                  <div class="col-sm-9 mb-6 mb-sm-0 px-2">
-                                    <button type="submit" class="btn btn-primary btn-block text-capitalize">
-                                      Order On WhatsApp
-                                    </button>
-                                    <button type="submit" class="btn btn-primary btn-block text-capitalize">
-                                      Contact Store
-                                    </button>
-                                  </div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6 col-md-4 col-xl-custom product product-style-01 mb-8" data-animate="fadeInUp">
-                  <div class="card border-0">
-                    <div class="position-relative hover-zoom-in">
-                      <a href="product-detail-01.html" class="d-block overflow-hidden">
-                        <img src="images/product-10.jpg" alt="Striped cotton-blend sweatshirt" class="card-img-top image-active">
-                        <img src="images/product-10_1.jpg" alt="Striped cotton-blend sweatshirt" class="card-img-top image-hover">
-                      </a>
-                      <div class="position-absolute pos-fixed-bottom-center d-inline-flex p-4 flex-column z-index-10">
-                        <div class="w-100 content-change-horizontal d-flex justify-content-center mt-auto">
-                          <a href="#" data-toggle="tooltip" data-placement="top" title="Quick view" class="preview d-flex align-items-center justify-content-center text-primary bg-white hover-white bg-hover-primary w-45px h-45px">
-                            <span data-toggle="modal" data-target="#product-best-sellers-10">
-                              <i class="fal fa-eye"></i>
-                            </span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-body pt-3 px-0 pb-0">
-                      <h3 class="card-title fs-16 font-weight-500 mb-1 lh-14375"><a href="product-detail-01.html" class="">Arctic Fox Gaming Mouse Pad (pack of 2)</a>
-                      </h3>
-                      <p class="text-primary mb-2 card-title lh-14375">Rs. 229.00</p>
-                    </div>
-                    <div class="background-color-expand"></div>
-                  </div>
-                </div>
-                <div class="modal fade quick-view" id="product-best-sellers-10" tabindex="-1" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content p-0">
-                      <div class="modal-body p-0">
-                        <button type="button" class="close fs-32 position-absolute pos-fixed-top-right pr-3 pt-2 z-index-10" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true" class="fs-20"><i class="fal fa-times"></i></span>
-                        </button>
-                        <div class="row no-gutters">
-                          <div class="col-sm-6">
-                            <div style="background-image: url('images/product-10.jpg');" class="h-100 bg-img-cover-center ratio ratio-1-1"></div>
-                          </div>
-                          <div class="col-sm-6">
-                            <div class="p-3 py-lg-8 pl-lg-8 pr-lg-7">
-                              <a href="shop-page-01.html" class="text-muted fs-11 font-weight-500 letter-spacing-05px text-uppercase mb-2 d-block">
-                                Mouse Pad</a>
-                              <div class="d-flex align-items-center">
-                                <h2 class="fs-30 mb-1"><a href="product-detail-01.html">Arctic Fox Gaming Mouse Pad (pack of 2)</a>
-                                </h2>
-                              </div>
-                              <p class="mb-6 fs-20 text-primary lh-14">
-                                Rs. 229.00
-                              </p>
-                              <p class="mt-2 mb-6">Arctic Fox Mouse pad, designed to bring a touch of aviation to your workspace. Featuring a smooth, precision-engineered surface, this mouse pad allows for accurate and seamless mouse movements, whether for work or play</p>
-                              <form>
-                                <div class="row align-items-end no-gutters mx-n2">
-                                  <div class="col-sm-9 mb-6 mb-sm-0 px-2">
-                                    <button type="submit" class="btn btn-primary btn-block text-capitalize">
-                                      Order On WhatsApp
-                                    </button>
-                                    <button type="submit" class="btn btn-primary btn-block text-capitalize">
-                                      Contact Store
-                                    </button>
-                                  </div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <p class="mt-2">Loading products...</p>
               </div>
             </div>
           </div>
@@ -757,11 +468,10 @@
             <div class="col-sm-6 col-xl-3 border-0 border-xl-right border-custom pb-8">
               <div class="pl-xl-6">
                 <h3 class="fs-16 mb-3 font-weight-500">CONTACT</h3>
-                <p class="lh-166 mb-0">+91 91760 91760
-                </p>
-                <p class="mb-0 lh-166">
-                  naguruminc@gmail.com
-                </p>
+                <ul class="list-unstyled mb-0">
+                  <li><a href="tel:+919176091760" class="text-body lh-1875 hover-primary">+91 91760 91760</a></li>
+                  <li><a href="mailto:naguruminc@gmail.com" class="text-body lh-1875 hover-primary">naguruminc@gmail.com</a></li>
+                </ul>
               </div>
             </div>
             <div class="col-sm-6 col-xl-3 pb-8">
@@ -796,6 +506,9 @@
         </div>
       </div>
     </footer>
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <!-- Vendors scripts -->
     <script src="js/3914-vendors-jquery.min.js"></script>
     <script src="js/jquery-ui-jquery-ui.min.js"></script>
@@ -811,6 +524,16 @@
     <script src="js/isotope-isotope.js"></script>
     <script src="js/8963-vendors-jquery.fullscreen.min.js"></script>
     <script src="js/chartjs-chart.min.js"></script>
+
+        <!-- Initialize Supabase first -->
+        <script type="module">
+          import { supabase } from './products/js/supabase-config.js';
+          window.supabase = supabase; // Make it globally available
+          
+          // Then load the products script
+          import './products/js/products.js';
+      </script>
+
     <!-- Theme scripts -->
     <script src="js/8037-js-theme.js"></script>
     <div class="mfp-hide search-popup mfp-with-anim bg-white" id="search-popup">
@@ -852,7 +575,7 @@
               </a>
             </li>
             <li aria-haspopup="true" aria-expanded="false" class="nav-item dropdown py-1 px-0">
-              <a class="nav-link p-0" href="store.html">
+              <a class="nav-link p-0" href="products/pro.html">
                 PRODUCTS
                 <span class="caret"></span>
               </a>

@@ -57,6 +57,14 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         // Render the product details
         renderProductDetails(product);
+        
+        // Initialize tab functionality
+        if (typeof $ !== 'undefined') {
+            $('#productTabs a').on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        }
     } catch (error) {
         console.error('Error loading product:', error);
         showError(`Failed to load product details: ${error.message || 'Unknown error'}`);
@@ -117,7 +125,12 @@ function renderProductDetails(product) {
                                 </span>
                             ` : ''}
                         </div>
-                        ${product.description ? `<div class="product-description mb-6">${product.description}</div>` : ''}
+                        ${product.short_description ? 
+                            `<div class="product-short-description mb-4">${product.short_description}</div>` : 
+                            product.description ? 
+                            `<div class="product-description mb-4">${product.description}</div>` : 
+                            ''
+                        }
                         <form>
                             <div class="row align-items-end no-gutters mx-n2">
                                 <div class="col-sm-12 mb-6 px-2">
@@ -138,8 +151,123 @@ function renderProductDetails(product) {
         </div>
     </section>`;
 
-    // Update the main content
-    mainContent.innerHTML = productHtml;
+    // Create specifications HTML if they exist
+    let specsHtml = '';
+    if (product.specifications && (Array.isArray(product.specifications) ? product.specifications.length > 0 : Object.keys(product.specifications).length > 0)) {
+        specsHtml = `
+            <div class="specifications-container">
+                <h3 class="mb-4">Product Specifications</h3>`;
+                
+        // Handle both array (new format) and object (old format) specifications
+        if (Array.isArray(product.specifications)) {
+            let currentTable = '';
+            let isTableOpen = false;
+            
+            product.specifications.forEach((item, index) => {
+                if (item.type === 'heading') {
+                    // Close previous table if open
+                    if (isTableOpen) {
+                        specsHtml += `
+                            </tbody>
+                        </table>
+                    </div>`;
+                        isTableOpen = false;
+                    }
+                    
+                    // Add heading
+                    if (index > 0) specsHtml += '<div class="mt-5"></div>'; // Add spacing between sections
+                    specsHtml += `
+                    <h4 class="spec-heading mt-4 mb-3 pb-2 border-bottom">${item.text}</h4>
+                    <div class="specifications-table">
+                        <table class="table table-bordered">
+                            <tbody>`;
+                    isTableOpen = true;
+                } else if (item.type === 'spec') {
+                    // Add specification row
+                    if (!isTableOpen) {
+                        specsHtml += `
+                    <div class="specifications-table">
+                        <table class="table table-bordered">
+                            <tbody>`;
+                        isTableOpen = true;
+                    }
+                    
+                    specsHtml += `
+                                <tr>
+                                    <th style="width: 30%;">${item.key}</th>
+                                    <td>${item.value}</td>
+                                </tr>`;
+                }
+            });
+            
+            // Close the last table if still open
+            if (isTableOpen) {
+                specsHtml += `
+                            </tbody>
+                        </table>
+                    </div>`;
+            }
+        } else {
+            // Old format (backward compatibility)
+            specsHtml += `
+                <div class="specifications-table">
+                    <table class="table table-bordered">
+                        <tbody>`;
+            
+            for (const [key, value] of Object.entries(product.specifications)) {
+                if (value) {  // Only add if value exists
+                    specsHtml += `
+                        <tr>
+                            <th style="width: 30%;">${key}</th>
+                            <td>${value}</td>
+                        </tr>`;
+                }
+            }
+            
+            specsHtml += `
+                        </tbody>
+                    </table>
+                </div>`;
+        }
+        
+        specsHtml += `
+            </div>`;
+    } else {
+        specsHtml = '<p>No specifications available for this product.</p>';
+    }
+
+    // Add tabs content to the product HTML
+    const tabsHtml = `
+    <!-- Product Tabs -->
+    <div class="row mt-8">
+        <div class="col-12">
+            <div class="product-tabs">
+                <ul class="nav nav-tabs border-0 mb-6" id="productTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-toggle="tab" data-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="specifications-tab" data-toggle="tab" data-target="#specifications" type="button" role="tab" aria-controls="specifications" aria-selected="false">Specifications</button>
+                    </li>
+                </ul>
+                <div class="tab-content pt-4" id="productTabsContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                        <div id="product-description">
+                            ${product.detailed_description || product.description || '<p>No detailed description available for this product.</p>'}
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="specifications" role="tabpanel" aria-labelledby="specifications-tab">
+                        <div id="product-specifications">
+                            ${specsHtml}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+    // Update the main content with product details and tabs
+    mainContent.innerHTML = productHtml + tabsHtml;
 
     // Initialize image gallery
     initImageGallery();

@@ -88,7 +88,22 @@ function setupEventListeners() {
     input.addEventListener('change', handleImageUpload);
   });
   
-  // Delete functionality removed
+  // Add specification button
+  document.getElementById('add-specification')?.addEventListener('click', () => addSpecificationField());
+  
+  // Add heading button
+  document.getElementById('add-heading')?.addEventListener('click', () => addSpecificationHeading());
+  
+  // Handle dynamic specification removal
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-spec')) {
+      e.preventDefault();
+      e.target.closest('.specification-row').remove();
+    }
+  });
+  
+  // Initialize with one empty specification field
+  addSpecificationField();
 }
 
 // Get all products
@@ -214,45 +229,141 @@ function renderProductsTable(products) {
 }
 
 // Show add product form
-function showAddProductForm() {
-  try {
-    currentProductId = null;
-    document.getElementById('product-form').reset();
-    
-    // Clear all image previews
-    document.querySelectorAll('.image-preview-container').forEach(container => {
-      container.innerHTML = '';
-    });
-    
-    // Reset file inputs
-    document.querySelectorAll('.product-image').forEach(input => {
-      input.value = '';
-    });
-    
-    // Reset image arrays
-    currentImageFiles = Array(4).fill(null);
-    currentImageUrls = Array(4).fill('');
-    
-    // Update UI
-    document.getElementById('form-title').textContent = 'Add New Product';
-    
-    // Show the form
-    document.getElementById('products-section').classList.add('d-none');
-    document.getElementById('product-form-section').classList.remove('d-none');
-    
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  } catch (error) {
-    console.error('Error showing add product form:', error);
-    showError('Failed to initialize the add product form');
+function resetForm() {
+  productForm.reset();
+  currentProductId = null;
+  currentImageFiles = Array(4).fill(null);
+  currentImageUrls = Array(4).fill('');
+  
+  // Reset image previews
+  document.querySelectorAll('.image-preview-container').forEach(container => {
+    container.innerHTML = '';
+  });
+  
+  // Reset file inputs
+  document.querySelectorAll('.product-image').forEach(input => {
+    input.value = '';
+  });
+  
+  // Reset specifications
+  const container = document.getElementById('specifications-container');
+  if (container) {
+    container.innerHTML = '';
+    addSpecificationField(); // Add one empty field
   }
 }
 
-// Show products list
-function showProductsList() {
-  productsSection.classList.remove('d-none');
-  productFormSection.classList.add('d-none');
-  loadProducts();
+// Add a new specification field
+function addSpecificationField(key = '', value = '', isHeading = false) {
+  const container = document.getElementById('specifications-container');
+  if (!container) return;
+  
+  const index = Date.now(); // Unique ID for the field
+  
+  const row = document.createElement('div');
+  row.className = `row specification-row mb-3 ${isHeading ? 'specification-heading' : ''}`;
+  
+  if (isHeading) {
+    row.innerHTML = `
+      <div class="col-12">
+        <div class="d-flex align-items-center">
+          <input type="text" class="form-control font-weight-bold" placeholder="Section Heading" value="${key}">
+          <button class="btn btn-outline-danger remove-spec ml-2" type="button">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <input type="hidden" class="is-heading" value="true">
+      </div>
+    `;
+  } else {
+    row.innerHTML = `
+      <div class="col-md-5">
+        <input type="text" class="form-control spec-key" placeholder="Specification (e.g., Color)" value="${key}">
+      </div>
+      <div class="col-md-6">
+        <div class="input-group">
+          <input type="text" class="form-control spec-value" placeholder="Value (e.g., Black)" value="${value}">
+          <div class="input-group-append">
+            <button class="btn btn-outline-danger remove-spec" type="button">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  container.appendChild(row);
+}
+
+// Add a new specification heading
+function addSpecificationHeading() {
+  addSpecificationField('', '', true);
+  // Scroll to the newly added heading
+  const container = document.getElementById('specifications-container');
+  container.lastElementChild.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Get specifications from form
+function getSpecifications() {
+  const specs = [];
+  const rows = document.querySelectorAll('.specification-row');
+  
+  rows.forEach(row => {
+    const isHeading = row.querySelector('.is-heading')?.value === 'true';
+    const keyInput = row.querySelector('.spec-key, '.repeat(2) + 'input[type="text"]');
+    const valueInput = row.querySelector('.spec-value');
+    
+    if (isHeading && keyInput?.value.trim()) {
+      // Add heading as a special object
+      specs.push({
+        type: 'heading',
+        text: keyInput.value.trim()
+      });
+    } else if (!isHeading && keyInput?.value.trim() && valueInput?.value.trim()) {
+      // Add regular key-value pair
+      specs.push({
+        type: 'spec',
+        key: keyInput.value.trim(),
+        value: valueInput.value.trim()
+      });
+    }
+  });
+  
+  return specs.length > 0 ? specs : null;
+}
+
+// Load specifications into form
+function loadSpecifications(specs) {
+  const container = document.getElementById('specifications-container');
+  if (!container || !specs) {
+    addSpecificationField(); // Add one empty field if no specs
+    return;
+  }
+  
+  container.innerHTML = ''; // Clear existing fields
+  
+  if (Array.isArray(specs)) {
+    // Handle new format with headings
+    specs.forEach(item => {
+      if (item.type === 'heading') {
+        addSpecificationField(item.text, '', true);
+      } else if (item.type === 'spec') {
+        addSpecificationField(item.key, item.value);
+      }
+    });
+  } else if (typeof specs === 'object' && specs !== null) {
+    // Handle old format (backward compatibility)
+    for (const [key, value] of Object.entries(specs)) {
+      addSpecificationField(key, value);
+    }
+  }
+  
+  // Always ensure at least one empty field if no specs
+  if ((Array.isArray(specs) && specs.length === 0) || 
+      (typeof specs === 'object' && Object.keys(specs).length === 0)) {
+    addSpecificationField();
+  }
 }
 
 // Upload image to Supabase Storage
@@ -368,18 +479,26 @@ async function handleFormSubmit(e) {
     `;
     
     // Get form values
+    const name = document.getElementById('product-name').value.trim();
+    const shortDescription = document.getElementById('product-short-description').value.trim();
+    const description = document.getElementById('product-description').value.trim();
+    const category = document.getElementById('product-category').value.trim();
     const originalPrice = parseFloat(document.getElementById('product-original-price').value) || 0;
     const salePrice = parseFloat(document.getElementById('product-sale-price').value) || null;
+    const price = salePrice || originalPrice;
+    const inStock = document.getElementById('product-in-stock').checked;
     
     const productData = {
-      name: document.getElementById('product-name').value.trim(),
-      category: document.getElementById('product-category').value,
-      price: salePrice || originalPrice, // Use sale price if available, otherwise use original price
+      name,
+      short_description: shortDescription,
+      description: description,
+      category: category || 'Uncategorized',
+      price,
       original_price: originalPrice,
       sale_price: salePrice,
-      in_stock: document.getElementById('product-in-stock').checked,
-      description: document.getElementById('product-description').value.trim(),
+      in_stock: inStock,
       is_featured: document.getElementById('product-featured').checked,
+      specifications: getSpecifications(),
       images: []
     };
     
@@ -517,25 +636,31 @@ function showLoadingState(show) {
 }
 
 // Update image preview
-function updateImagePreview(imageUrl, altText = '') {
+function updateImagePreview(imageUrl, altText = '', index) {
   if (imageUrl) {
-    imagePreview.innerHTML = `
-      <img src="${imageUrl}" 
-           alt="${altText}" 
-           class="img-fluid mt-2" 
-           style="max-width: 200px; max-height: 200px; object-fit: cover;
-                  border: 1px solid #dee2e6; border-radius: 4px;">
-      <button type="button" class="btn btn-sm btn-outline-danger mt-2" onclick="window.removeImage()">
-        <i class="far fa-trash-alt me-1"></i> Remove Image
-      </button>
-    `;
+    const previewContainer = document.querySelector(`.image-preview-container[data-preview="${index + 1}"]`);
+    if (previewContainer) {
+      previewContainer.innerHTML = `
+        <img src="${imageUrl}" 
+             alt="${altText}" 
+             class="img-fluid mt-2" 
+             style="max-width: 200px; max-height: 200px; object-fit: cover;
+                    border: 1px solid #dee2e6; border-radius: 4px;">
+        <button type="button" class="btn btn-sm btn-outline-danger mt-2" onclick="window.removeImage()">
+          <i class="far fa-trash-alt me-1"></i> Remove Image
+        </button>
+      `;
+    }
   } else {
-    imagePreview.innerHTML = `
-      <div class="text-center py-4 border rounded bg-light">
-        <i class="far fa-image fa-3x text-muted mb-2"></i>
-        <p class="mb-0 text-muted">No image selected</p>
-      </div>
-    `;
+    const previewContainer = document.querySelector(`.image-preview-container[data-preview="${index + 1}"]`);
+    if (previewContainer) {
+      previewContainer.innerHTML = `
+        <div class="text-center py-4 border rounded bg-light">
+          <i class="far fa-image fa-3x text-muted mb-2"></i>
+          <p class="mb-0 text-muted">No image selected</p>
+        </div>
+      `;
+    }
   }
 }
 
@@ -548,6 +673,23 @@ function showProductForm(show) {
     productsSection.classList.remove('d-none');
     productFormSection.classList.add('d-none');
   }
+}
+
+// Show add product form
+function showAddProductForm() {
+  resetForm();
+  document.getElementById('form-title').textContent = 'Add New Product';
+  currentProductId = null;
+  showProductForm(true);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Show products list
+function showProductsList() {
+  productsSection.classList.remove('d-none');
+  productFormSection.classList.add('d-none');
+  resetForm();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Remove image
@@ -581,37 +723,30 @@ async function editProduct(productId) {
       throw new Error('Product not found');
     }
     
-    // Populate form
+    // Populate form fields
+    document.getElementById('product-id').value = product.id;
     document.getElementById('product-name').value = product.name || '';
-    document.getElementById('product-category').value = product.category || '';
-    document.getElementById('product-original-price').value = product.original_price || product.price || '';
-    document.getElementById('product-sale-price').value = product.sale_price || '';
-    document.getElementById('product-in-stock').checked = product.in_stock !== false; // Default to true if not set
+    document.getElementById('product-short-description').value = product.short_description || '';
     document.getElementById('product-description').value = product.description || '';
-    document.getElementById('product-featured').checked = product.is_featured || false;
+    document.getElementById('product-category').value = product.category || '';
+    document.getElementById('product-original-price').value = product.original_price || '';
+    document.getElementById('product-sale-price').value = product.sale_price || '';
+    document.getElementById('product-in-stock').checked = product.in_stock !== false;
     
-    // Reset image arrays
-    currentImageFiles = Array(4).fill(null);
+    // Load specifications if they exist
+    if (product.specifications) {
+      loadSpecifications(product.specifications);
+    } else {
+      loadSpecifications({});
+    }
+    
+    // Handle images
     currentImageUrls = Array(4).fill('');
-    
-    // Show image previews if they exist
-    const images = product.images || [];
-    if (images.length > 0) {
-      images.forEach((imageUrl, index) => {
-        if (index < 4) { // Only show up to 4 images
-          currentImageUrls[index] = imageUrl;
-          const previewContainer = document.querySelector(`.image-preview-container[data-preview="${index + 1}"]`);
-          if (previewContainer) {
-            previewContainer.innerHTML = `
-              <div class="position-relative d-inline-block">
-                <img src="${imageUrl}" alt="Preview ${index + 1}" class="img-thumbnail" style="max-width: 150px; max-height: 150px;">
-                <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 m-1 rounded-circle" 
-                        onclick="removeImage(${index}, event)">
-                  <i class="fal fa-times"></i>
-                </button>
-              </div>
-            `;
-          }
+    if (product.images && Array.isArray(product.images)) {
+      product.images.forEach((img, index) => {
+        if (index < 4) {
+          currentImageUrls[index] = img;
+          updateImagePreview(img, `Product Image ${index + 1}`, index);
         }
       });
     }
