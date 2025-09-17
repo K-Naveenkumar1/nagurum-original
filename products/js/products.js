@@ -140,7 +140,7 @@ function createProductCard(product) {
     productCard.innerHTML = `
         <div class="card border-0" style="height: 400px; border-radius: 0 !important; display: flex; flex-direction: column;">
             <div class="position-relative hover-zoom-in" style="flex: 0 0 70%; border-radius: 0 !important; background: #f8f9fa;">
-                <a href="products/products-details.html?id=${product.id}" class="d-block position-relative overflow-hidden h-100" style="border-radius: 0 !important; display: block; height: 100%;">
+                <a href="../products/products-details.html?id=${product.id}" class="d-block position-relative overflow-hidden h-100" style="border-radius: 0 !important; display: block; height: 100%;">
                     <img src="${mainImage}" alt="${product.name}" class="image-active" onerror="this.onerror=null;this.src='images/placeholder.jpg'">
                     <img src="${secondaryImage}" alt="${product.name}" class="image-hover" onerror="this.onerror=null;this.src='images/placeholder.jpg'">
                 </a>
@@ -152,7 +152,7 @@ function createProductCard(product) {
             <div class="card-body px-0 pt-3 pb-2" style="flex: 1; display: flex; flex-direction: column;">
                 <div class="product-content" style="flex: 1; min-height: 0;">
                     <h3 class="fs-16 mb-2" style="line-height: 1.4;">
-                        <a href="products/products-details.html?id=${product.id}" class="text-heading font-weight-600 text-truncate-2 d-block" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.name}</a>
+                        <a href="../products/products-details.html?id=${product.id}" class="text-heading font-weight-600 text-truncate-2 d-block" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.name}</a>
                     </h3>
                     <div class="d-flex align-items-center mt-2" style="display: flex !important; align-items: center !important; margin: 10px 0 !important;">
                         <span style="color: #e74c3c !important; font-weight: 600 !important; margin-right: 8px !important;">₹${parseFloat(displayPrice).toFixed(2)}</span>

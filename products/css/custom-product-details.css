@@ -41,12 +41,195 @@
     height: 0;
 }
 
+/* Mobile-specific fixes */
+@media (max-width: 991.98px) {
+    /* Mobile navbar fixes */
+    .d-xl-none {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 0 15px;
+    }
+    
+    .navbar-toggler {
+        padding: 0.25rem 0.5rem;
+        margin-right: 10px;
+    }
+    
+    .nav-search {
+        padding: 0.25rem 0.5rem;
+        margin-left: 10px;
+    }
+    
+    /* Ensure logo is properly centered */
+    .mx-auto {
+        margin: 0 auto !important;
+        padding: 0 10px;
+    }
+    html, body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        position: relative;
+    }
+    
+    body {
+        overflow-x: hidden;
+    }
+    
+    .container, 
+    .container-fluid {
+        max-width: 100%;
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+        margin: 0;
+    }
+    
+    .container > .row,
+    .container-fluid > .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .row {
+        margin-right: -15px;
+        margin-left: -15px;
+        max-width: 100%;
+    }
+    
+    [class*="col-"] {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    
+    /* Product details specific fixes */
+    .primary-summary {
+        padding-left: 0 !important;
+        margin-top: 30px;
+    }
+    
+    .primary-summary-inner {
+        padding: 0 15px;
+    }
+    
+    .product-image-dots {
+        display: none !important;
+    }
+    
+    .scrollspy-images {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+    
+    /* Ensure all content respects the viewport */
+    .product-detail-section,
+    .product-gallery-container,
+    .summary-sticky,
+    .product-tabs,
+    .product-info-section {
+        max-width: 100%;
+        width: 100%;
+        overflow-x: hidden;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    
+    /* Fix for images and other media */
+    img, video, iframe {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Adjust buttons and form elements */
+    .btn-block {
+        width: 100%;
+        margin: 5px 0;  /* Reduced from 10px */
+        padding: 10px 15px;  /* Reduced from 12px 20px */
+        font-size: 15px;  /* Slightly smaller font */
+        border-radius: 4px;
+        text-align: center;
+        display: inline-block;
+        line-height: 1.3;  /* Tighter line height */
+    }
+    
+    /* Center align button container */
+    .col-sm-12.mb-6.px-2 {
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    /* Adjust spacing after buttons */
+    .primary-summary-inner > form {
+        margin-bottom: 0;
+    }
+    
+    .primary-summary-inner {
+        padding: 0 15px !important;
+    }
+    
+    /* Ensure proper spacing between buttons */
+    .btn-block + .btn-block {
+        margin-top: 15px;
+    }
+    
+    /* Price and title alignment */
+    .price-container, h1 {
+        padding-left: 0;
+        margin-left: 0;
+    }
+}
+
 /* Product Tabs Styling */
 .product-tabs {
     margin-top: 40px;
     margin-left: 20px; /* Added left margin for better spacing */
     padding: 30px 20px 0; /* Added horizontal padding */
     border-top: 1px solid #eaeaea;
+}
+
+/* Mobile view tabs */
+@media (max-width: 991.98px) {
+    .product-tabs { 
+        margin-left: 0 0 0 0;
+        padding: 0px 15px 0 0 ;
+    }
+    
+    .product-tabs .nav-tabs {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        border-bottom: 2px solid #f5f5f5;
+        margin-bottom: 20px;
+        padding-bottom: 2px;
+    }
+    
+    .product-tabs .nav-tabs::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .product-tabs .nav-item {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        margin-right: 15px;
+    }
+    
+    .product-tabs .nav-link {
+        padding: 8px 15px;
+        font-size: 14px;
+        border-radius: 4px;
+        margin-bottom: -2px;
+    }
+    
+    .product-tabs .tab-content {
+        padding: 0 5px;
+    }
 }
 
 /* Specifications Styling */

@@ -78,7 +78,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.3);
     padding: 20px !important;
 }
 
@@ -135,5 +134,26 @@
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
+  }
+  
+  /* Two products per row on mobile */
+  .products-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  
+  .products-container > [class*='col-'] {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 16px;
+  }
+  
+  /* Ensure product cards take full width of their container */
+  .products-container .card {
+    height: 100%;
   }
 }
