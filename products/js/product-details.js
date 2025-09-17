@@ -134,12 +134,12 @@ function renderProductDetails(product) {
                         <form>
                             <div class="row align-items-end no-gutters mx-n2">
                                 <div class="col-sm-12 mb-6 px-2">
-                                    <a href="https://wa.me/+919176091760?text=I%20Want%20To%20Order%20${encodeURIComponent(product.name)}" 
+                                    <a href="https://wa.me/+919176055555?text=I%20Want%20To%20Order%20${encodeURIComponent(product.name)}" 
                                        class="btn btn-success btn-block text-capitalize mb-3" 
                                        target="_blank">
                                         <i class="fab fa-whatsapp mr-2"></i> Order On WhatsApp
                                     </a>
-                                    <a href="tel:+919176091760" class="btn btn-primary btn-block text-capitalize">
+                                    <a href="tel:+919176055555" class="btn btn-primary btn-block text-capitalize">
                                         <i class="fas fa-phone-alt mr-2"></i> Contact Store
                                     </a>
                                 </div>
